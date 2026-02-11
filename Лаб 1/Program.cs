@@ -10,54 +10,59 @@ namespace MathOperationsApp
             uint exponent;
             ulong powerResult;
 
-            // Задание 1: Возведение в степень
-            Console.Write("Введите основание (натуральное число): ");
+            // Task 1: Exponentiation
+            Console.Write("Enter the base (natural number): ");
             baseNumber = uint.Parse(Console.ReadLine());
 
-            Console.Write("Введите показатель степени (натуральное число): ");
+            Console.Write("Enter the exponent (natural number): ");
             exponent = uint.Parse(Console.ReadLine());
 
             powerResult = CalculatePower(baseNumber, exponent);
             Console.WriteLine($"{baseNumber} ^ {exponent} = {powerResult}");
 
-            // Задание 2: Преобразование числа
+            // Task 2: Number transformation
             uint originalNumber;
             uint transformedNumber;
 
-            Console.Write("\nВведите число X (не менее 100): ");
+            Console.Write("\nEnter X (must be at least 100): ");
             originalNumber = uint.Parse(Console.ReadLine());
 
-            transformedNumber = TransformNumber(originalNumber);
-            Console.WriteLine($"Результат преобразования: {transformedNumber}");
+            transformedNumber = RemoveSecondDigitAndAppendToEnd(originalNumber);
+            Console.WriteLine($"Transformation result: {transformedNumber}");
+
+            // Wait for user input before closing
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
         }
 
-        /// <summary>
-        /// Вычисляет возведение в степень, используя только операцию умножения.
-        /// </summary>
+        // Calculates exponentiation using only multiplication
         static ulong CalculatePower(uint baseValue, uint exponent)
         {
             ulong result = 1;
 
             for (uint counter = 0; counter < exponent; counter++)
             {
-                result = result * baseValue;
+                result *= baseValue;
             }
 
             return result;
         }
 
-        /// <summary>
-        /// Преобразует число по заданному алгоритму.
-        /// </summary>
-        static uint TransformNumber(uint number)
+        // Removes the second digit of a number and appends it to the end
+        static uint RemoveSecondDigitAndAppendToEnd(uint number)
         {
-            string numberString = number.ToString();
+            string numberString;
+            char secondDigit;
+            string numberWithoutSecondDigit;
+            string resultString;
+            uint resultNumber;
 
-            char secondDigit = numberString[1];
-            string withoutSecondDigit = numberString.Remove(1, 1);
-            string resultString = withoutSecondDigit + secondDigit;
+            numberString = number.ToString();
+            secondDigit = numberString[1];
+            numberWithoutSecondDigit = numberString.Remove(1, 1);
+            resultString = numberWithoutSecondDigit + secondDigit;
+            resultNumber = uint.Parse(resultString);
 
-            uint resultNumber = uint.Parse(resultString);
             return resultNumber;
         }
     }
