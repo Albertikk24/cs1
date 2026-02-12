@@ -42,7 +42,6 @@ namespace MathOperationsApp {
       ulong result = 1;
 
       for (uint counter = 0; counter < exponent; ++counter) {
-
             result *= baseValue;
       }
 
